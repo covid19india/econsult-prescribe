@@ -1,0 +1,74 @@
+
+body {
+	background: #333;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 24px;
+}
+
+strong { font-weight: 700; }
+
+a, a:hover, a:focus {
+	color: #a93a52;
+	text-decoration: none;
+    -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+h1, h2 {
+	margin-top: 10px;
+	font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 44px;
+}
+
+img { max-width: 100%; }
+
+::-moz-selection { background: #a93a52; color: #fff; text-shadow: none; }
+::selection { background: #a93a52; color: #fff; text-shadow: none; }
+
+/***** Multi Step Form *****/
+
+.msf-container { padding-bottom: 80px; text-align: center; }
+
+.msf-title h3 { padding-bottom: 10px; font-weight: 700; }
+.msf-title p { opacity: 0.8; }
+
+.msf-form h4 {
+	margin-top: 20px;
+	margin-bottom: 30px;
+	font-weight: 700;
+	line-height: 26px;
+}
+.msf-form h4 .step { color: #aaa; }
+
+.msf-form form fieldset { display: none; overflow: hidden; }
+
+.msf-form form input[type="text"] { width: 400px; margin-left: 5px; margin-right: 5px; }
+.msf-form form input[type="text"].short { width: 200px; margin-left: 5px; margin-right: 5px; }
+
+.msf-form form input[type="number"] { width: 400px; margin-left: 5px; margin-right: 5px; }
+.msf-form form input[type="number"].short { width: 200px; margin-left: 5px; margin-right: 5px; }
+
+.msf-form form textarea.form-control { width: 700px; height: 160px; }
+
+.msf-form form select.form-control { width: 400px; margin-left: 5px; margin-right: 5px; }
+.msf-form form select.short { width: 200px; margin-left: 5px; margin-right: 5px; }
+
+
+.msf-form form .form-group { margin-bottom: 15px; }
+
+.msf-form form button.btn { min-width: 110px; margin-top: 15px; margin-left: 5px; margin-right: 5px; }
+
+.msf-form form p { opacity: 0.8; }
+
+.msf-form form .radio-buttons-1,
+.msf-form form .radio-buttons-2,
+.msf-form form .checkboxes-1,
+.msf-form form .checkboxes-2 { display: inline-block; margin: 0 15px 20px 15px; }
+
+.msf-form form .selects-1,
+.msf-form form .selects-2 { display: inline-block; margin: 0 0 20px 0; }
+

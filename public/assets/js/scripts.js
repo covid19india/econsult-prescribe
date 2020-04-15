@@ -23,6 +23,22 @@ jQuery(document).ready(function() {
 	
 	// next step
 	$('.msf-form form .btn-next').on('click', function() {
+		if ($(this).attr("id") == "step_1"){
+			$.ajax({
+				url: "https://econsult-api-lovat.now.sh/doctorsbyId?emailId="+$("#doctor_email").val(),
+				type: "GET",
+				success: function(result){
+					if (result[0]){
+						$("#doctor_name").val(result[0].name);
+						$("#doctor_designation").val(result[0].qualifications);
+						$("#medical_reg_no").val(result[0].medicalcouncilregistrationnopleaseinputthefullnowithstatemedicalcouncilprefix);
+						$("#doctor_location").val(result[0].state);
+					}
+				},
+				error: function(error){
+				}
+			});
+		}
 		$(this).parents('fieldset').fadeOut(400, function() {
 	    	$(this).next().fadeIn();
 			scroll_to_class('.msf-form');
@@ -98,30 +114,30 @@ jQuery(document).ready(function() {
     	
     	// Create doctor JSON object.
     	var doctor_json = new Object();
-    	doctor_json.name = data[0].value;
-    	doctor_json.designation = data[1].value;
-    	doctor_json.registration_number = data[2].value;
-    	doctor_json.location = data[3].value;
+    	doctor_json.name = data[1].value;
+    	doctor_json.designation = data[2].value;
+    	doctor_json.registration_number = data[3].value;
+    	doctor_json.location = data[4].value;
 
 		// Create patient JSON object.
     	var patient_json = new Object();
-    	patient_json.name = data[4].value;
-    	patient_json.age = data[5].value;
-    	patient_json.gender = data[6].value;
-    	patient_json.location = data[7].value;
-    	patient_json.blood_group = data[8].value;
+    	patient_json.name = data[5].value;
+    	patient_json.age = data[6].value;
+    	patient_json.gender = data[7].value;
+    	patient_json.location = data[8].value;
+    	patient_json.blood_group = data[9].value;
 
     	// Create prescription JSON object.
     	var prescription_json = new Object();
     	prescription_json.issued_on = new Date().toLocaleDateString();
-    	prescription_json.id = "1234";
-    	prescription_json.symptoms = data[9].value; 
-    	prescription_json.diagnosis = data[10].value;
+    	prescription_json.id = "12345";
+    	prescription_json.symptoms = data[10].value; 
+    	prescription_json.diagnosis = data[11].value;
     	prescription_json.additional_remarks = data[data.length-2].value;
     	prescription_json.follow_up_advice = data[data.length-1].value;
     	prescription_json.medicines = [];
 
-    	for (i = 11; i < data.length - 2; i = i + 4){
+    	for (i = 12; i < data.length - 2; i = i + 4){
     		var medicine_json = new Object();
     		medicine_json.name = data[i].value;
     		medicine_json.frequency = data[i+1].value;
@@ -137,11 +153,13 @@ jQuery(document).ready(function() {
     	console.log(request_json);
 
     	var request = JSON.stringify(request_json);
-		
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "http://localhost:3000/generateReport", true);
-		xhr.setRequestHeader('Content-Type', 'application/json');
-		xhr.send(request);
+		$.ajax({
+			type: "POST",
+			url: "http://localhost:3000/generateReport",
+			data: request,
+			contentType: 'application/json',
+			success: function (response, status, request) { download(response, "filename.pdf", "application/pdf"); }
+		});
 	});   
 });
 

@@ -45,41 +45,51 @@
 	                <div class="col-sm-12 msf-form">
 	                    
 	                    <form role="form" class="form-inline">
-	                    	
 	                    	<fieldset>
-	            				<h4>Doctor's Details <span class="step">(Step 1 / 5)</span></h4>
+	            				<h4><span class="step">(Step 1 / 6)</span></h4>
 	            				<div class="form-group">
-				                    <label for="doctor_name">Doctor's Full Name:</label><br>
+				                    <label for="doctor_email">Enter your registered email ID to fetch your details automatically:</label><br>
+				                    <input type="text" name="doctor_email" class="form-control" id="doctor_email">
+				                </div>
+	            				<br>
+	            				<button type="button" class="btn btn-next" id="step_1">Next <i class="fa fa-angle-right"></i></button>
+	            			</fieldset>
+
+	                    	<fieldset>
+	            				<h4>Doctor's Details <span class="step">(Step 2 / 6)</span></h4>
+	            				<div class="form-group">
+				                    <label>Doctor's Full Name:</label><br>
 				                    <input type="text" name="doctor_name" class="form-control" id="doctor_name" required>
 				                </div>
 				                <div class="form-group">
-				                    <label for="height">Designation:</label><br>
+				                    <label>Designation:</label><br>
 				                    <input type="text" name="doctor_designation" class="form-control" id="doctor_designation" required>
 				                </div>
 				                <div class="form-group">
-				                    <label for="height">Medical Registration Number:</label><br>
+				                    <label>Medical Registration Number:</label><br>
 				                    <input type="text" name="medical_reg_no" class="form-control" id="medical_reg_no" required>
 				                </div>
 				                <div class="form-group">
-				                    <label for="weight">Location:</label><br>
+				                    <label>Location:</label><br>
 				                    <input type="text" name="doctor_location" class="form-control" id="doctor_location" required>
 				                </div>
 	            				<br>
+	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
 	            				<button type="button" class="btn btn-next">Next <i class="fa fa-angle-right"></i></button>
 	            			</fieldset>
 	            			
 	            			<fieldset>
-	            				<h4>Patient's Details <span class="step">(Step 2 / 5)</span></h4>
+	            				<h4>Patient's Details <span class="step">(Step 3 / 6)</span></h4>
 	            				<div class="form-group">
-				                    <label for="patient_name">Patient's Full Name:</label><br>
+				                    <label>Patient's Full Name:</label><br>
 				                    <input type="text" name="patient_name" class="form-control" id="patient_name" required>
 				                </div>
 	            				<div class="form-group">
-				                    <label for="age">Age:</label><br>
+				                    <label>Age:</label><br>
 				                    <input type="number" name="patient_age" class="form-control" id="patient_age" required>
 				                </div>
 				                <div class="form-group">
-									<label for="gender">Gender:</label><br>
+									<label>Gender:</label><br>
 					                <select class="form-control" id="patient_gender" name="patient_gender" required>
 					                	<option value="Male">Male</option>
 					                	<option value="Female">Female</option>
@@ -87,11 +97,11 @@
 					                </select>
 								</div>
 				                <div class="form-group">
-				                    <label for="location">Location:</label><br>
+				                    <label>Location:</label><br>
 				                    <input type="text" name="patient_location" class="form-control" id="patient_location" required>
 				                </div>
 				                <div class="form-group">
-									<label for="blood_group">Blood Group:</label><br>
+									<label>Blood Group:</label><br>
 					                <select class="form-control short" id="patient_blood_group" name="patient_blood_group" required>
 					                	<option value="AB+">AB+</option>
 										<option value="AB-">AB-</option>
@@ -110,7 +120,7 @@
 	            			</fieldset>
 	            			
 	            			<fieldset>
-	            				<h4>Diagnosis <span class="step">(Step 3 / 5)</span></h4>
+	            				<h4>Diagnosis <span class="step">(Step 4 / 6)</span></h4>
 	            				<div class="form-group">
 				                    <label>Symptoms:</label><br>
 				                    <input type="text" name="symptoms" class="address form-control" id="symptoms" required>
@@ -125,7 +135,7 @@
 	            			</fieldset>
 	                    	
 	                    	<fieldset>
-	            				<h4>Medications <span class="step">(Step 4 / 5)</span></h4>
+	            				<h4>Medications <span class="step">(Step 5 / 6)</span></h4>
 	            				<div id="medicine_group">
 								</div>
 	            				<button type="button" class="btn btn-plus"><i class="fa fa-plus-circle"></i> Add</button><br>
@@ -134,7 +144,7 @@
 	            			</fieldset>
 	            			
 	            			<fieldset>
-	            				<h4><span class="step">(Step 5 / 5)</span></h4>
+	            				<h4><span class="step">(Step 6 / 6)</span></h4>
 	            				<div class="form-group">
 									<label>Additional remarks:</label><br>
 				                    <textarea name="additional_remarks" class="form-control" id="additional_remarks"></textarea>
@@ -160,6 +170,7 @@
         <script src="assets/js/jquery-1.11.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/download.js"></script>
         <script src="assets/js/scripts.js"></script>
         
         <!--[if lt IE 10]>

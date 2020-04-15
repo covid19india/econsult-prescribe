@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/VibhorKanojia/Prescription#readme",
   "dependencies": {
+    "@google-cloud/firestore": "^3.7.4",
     "ejs": "^3.0.2",
     "express": "^4.17.1",
+    "firebase-admin": "^8.10.0",
     "html-pdf": "^2.2.0"
   }
 }

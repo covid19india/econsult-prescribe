@@ -28,6 +28,7 @@ app.post("/generateReport", (req, res) => {
 	  console.log(err);
           res.send(err);
     } else {
+        var file_name = "prescription-" + details.prescription.id + ".pdf";
         let options = {
             "height": "11.25in",
             "width": "8.5in",
@@ -39,13 +40,15 @@ app.post("/generateReport", (req, res) => {
                 "contents": footer
             },
         };
-        var file_name = "prescription-" + details.prescription.id + ".pdf";
-        pdf.create(data, options).toFile(file_name, function (err, data) {
+        pdf.create(data, options).toStream(function(err, stream) {
             if (err) {
-                res.send(err);
-            } else {
-                res.download("./"+file_name);
+              res.json({
+                message: 'Sorry, we were unable to generate pdf',
+              });
             }
+	    res.setHeader('Content-type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename='+file_name);
+            stream.pipe(res); // your response
         });
     }
 });

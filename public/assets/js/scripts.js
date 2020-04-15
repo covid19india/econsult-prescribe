@@ -29,7 +29,7 @@ jQuery(document).ready(function() {
 				type: "GET",
 				success: function(result){
 					if (result[0]){
-						$("#doctor_name").val(result[0].name);
+						$("#doctor_name").val("Dr. " + result[0].name);
 						$("#doctor_designation").val(result[0].qualifications);
 						$("#medical_reg_no").val(result[0].medicalcouncilregistrationnopleaseinputthefullnowithstatemedicalcouncilprefix);
 						$("#doctor_location").val(result[0].state);
@@ -130,6 +130,7 @@ jQuery(document).ready(function() {
     	// Create prescription JSON object.
     	var prescription_json = new Object();
     	prescription_json.issued_on = new Date().toLocaleDateString();
+    	// To be fetched from the tawkto ticket ID.
     	prescription_json.id = "12345";
     	prescription_json.symptoms = data[10].value; 
     	prescription_json.diagnosis = data[11].value;
@@ -140,8 +141,8 @@ jQuery(document).ready(function() {
     	for (i = 12; i < data.length - 2; i = i + 4){
     		var medicine_json = new Object();
     		medicine_json.name = data[i].value;
-    		medicine_json.frequency = data[i+1].value;
-    		medicine_json.duration = data[i+2].value;
+    		medicine_json.duration = data[i+1].value;
+    		medicine_json.frequency = data[i+2].value;
     		medicine_json.usage = data[i+3].value;
     		prescription_json.medicines.push(medicine_json);
     	}
@@ -153,7 +154,7 @@ jQuery(document).ready(function() {
     	console.log(request_json);
 
     	var request = JSON.stringify(request_json);
-    	var url = "http://localhost:3000/generateReport"; 
+    	var url = window.location.href + "generateReport";
     	var xhr = new XMLHttpRequest();
 		xhr.open('POST', url, true);
 		xhr.responseType = 'arraybuffer';

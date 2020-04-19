@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Prescription Form</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/form-elements.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/media-queries.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+		<!-- Multi Step Form -->
+		<div class="msf-container">
+	        <div class="container">
+	        	<div class="row">
+	                <div class="col-sm-12 msf-title">
+	                    <h3>Prescription form</h3>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-sm-12 msf-form">
+	                    
+	                    <form role="form" class="form-inline">
+	                    	<fieldset>
+	            				<h4><span class="step">(Step 1 / 6)</span></h4>
+	            				<div class="form-group">
+				                    <label for="doctor_email">Enter your registered email ID to fetch your details automatically:</label><br>
+				                    <input type="text" name="doctor_email" class="form-control" id="doctor_email">
+				                </div>
+	            				<br>
+	            				<button type="button" class="btn btn-next" id="step_1">Next <i class="fa fa-angle-right"></i></button>
+	            			</fieldset>
+
+	                    	<fieldset>
+	            				<h4>Doctor's Details <span class="step">(Step 2 / 6)</span></h4>
+	            				<div class="form-group">
+				                    <label>Doctor's Full Name:</label><br>
+				                    <input type="text" name="doctor_name" class="form-control" id="doctor_name" required>
+				                </div>
+				                <div class="form-group">
+				                    <label>Designation:</label><br>
+				                    <input type="text" name="doctor_designation" class="form-control" id="doctor_designation" required>
+				                </div>
+				                <div class="form-group">
+				                    <label>Medical Registration Number:</label><br>
+				                    <input type="text" name="medical_reg_no" class="form-control" id="medical_reg_no" required>
+				                </div>
+				                <div class="form-group">
+				                    <label>Location:</label><br>
+				                    <input type="text" name="doctor_location" class="form-control" id="doctor_location" required>
+				                </div>
+	            				<br>
+	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
+	            				<button type="button" class="btn btn-next">Next <i class="fa fa-angle-right"></i></button>
+	            			</fieldset>
+	            			
+	            			<fieldset>
+	            				<h4>Patient's Details <span class="step">(Step 3 / 6)</span></h4>
+	            				<div class="form-group">
+				                    <label>Patient's Full Name:</label><br>
+				                    <input type="text" name="patient_name" class="form-control" id="patient_name" required>
+				                </div>
+	            				<div class="form-group">
+				                    <label>Age:</label><br>
+				                    <input type="number" name="patient_age" class="form-control" id="patient_age" required>
+				                </div>
+				                <div class="form-group">
+									<label>Gender:</label><br>
+					                <select class="form-control" id="patient_gender" name="patient_gender" required>
+					                	<option value="Male">Male</option>
+					                	<option value="Female">Female</option>
+					                	<option value="Other">Other</option>
+					                </select>
+								</div>
+				                <div class="form-group">
+				                    <label>Location:</label><br>
+				                    <input type="text" name="patient_location" class="form-control" id="patient_location" required>
+				                </div>
+				                <div class="form-group">
+									<label>Blood Group:</label><br>
+					                <select class="form-control short" id="patient_blood_group" name="patient_blood_group" required>
+					                	<option value="AB+">AB+</option>
+										<option value="AB-">AB-</option>
+					                	<option value="A+">A+</option>
+					                	<option value="A-">A-</option>
+					                	<option value="B+">B+</option>
+					                	<option value="B-">B-</option>
+										<option value="O+">O+</option>
+					                	<option value="O-">O-</option>
+
+					                </select>
+								</div>
+	            				<br>
+	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
+	            				<button type="button" class="btn btn-next">Next <i class="fa fa-angle-right"></i></button>
+	            			</fieldset>
+	            			
+	            			<fieldset>
+	            				<h4>Diagnosis <span class="step">(Step 4 / 6)</span></h4>
+	            				<div class="form-group">
+				                    <label>Symptoms:</label><br>
+				                    <input type="text" name="symptoms" class="address form-control" id="symptoms" required>
+				                </div>
+				                <div class="form-group">
+				                    <label>Diagnosis:</label><br>
+				                    <input type="text" name="diagnosis" class="address-city form-control" id="diagnosis" required>
+				                </div>
+	            				<br>
+	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
+	            				<button type="button" class="btn btn-next">Next <i class="fa fa-angle-right"></i></button>
+	            			</fieldset>
+	                    	
+	                    	<fieldset>
+	            				<h4>Medications <span class="step">(Step 5 / 6)</span></h4>
+	            				<div id="medicine_group">
+								</div>
+	            				<button type="button" class="btn btn-plus"><i class="fa fa-plus-circle"></i> Add</button><br>
+	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
+	            				<button type="button" class="btn btn-next">Next <i class="fa fa-angle-right"></i></button>
+	            			</fieldset>
+	            			
+	            			<fieldset>
+	            				<h4><span class="step">(Step 6 / 6)</span></h4>
+	            				<div class="form-group">
+									<label>Additional remarks:</label><br>
+				                    <textarea name="additional_remarks" class="form-control" id="additional_remarks"></textarea>
+				                </div>
+				                <div class="form-group">
+									<label>Follow-up advice:</label><br>
+				                    <textarea name="follow_up_advice" class="form-control" id="follow_up_advice"></textarea>
+				                </div>
+	            				<br>
+	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
+	            				<button type="submit" class="btn btn-submit">Submit</button>
+	            			</fieldset>
+	                    </form>
+	                    
+	                </div>
+	            </div>
+			</div>
+		</div>
+		
+		
+
+        <!-- Javascript -->
+        <script src="assets/js/jquery-1.11.1.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.backstretch.min.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>

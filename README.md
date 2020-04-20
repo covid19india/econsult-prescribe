@@ -18,6 +18,8 @@ npm --prefix ./functions install ./functions
 npm --prefix ./functions run serve
 
 # Start the Client
-npx http-server ./client
+npx http-server ./public
+
+Note: You'll have to update the XHR request in /public/assets/js/scripts.js to use dev_url instead of prod_url. 
 ```
 Navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in the browser

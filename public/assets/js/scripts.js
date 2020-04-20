@@ -160,7 +160,7 @@ jQuery(document).ready(function() {
     	// Update this to use dev_url if running locally.
 		var url = prod_url + "/generateReport";
     	var xhr = new XMLHttpRequest();
-		xhr.open('POST', prod_url, true);
+		xhr.open('POST', url, true);
 		xhr.responseType = 'arraybuffer';
 		xhr.onload = function () {
 		    if (this.status === 200) {

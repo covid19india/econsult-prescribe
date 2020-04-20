@@ -10,6 +10,8 @@ function scroll_to_class(chosen_class) {
 
 
 jQuery(document).ready(function() {
+	var dev_url = "http://localhost:5001/covid19indiaorg/us-central1/api";
+	var prod_url = "https://us-central1-covid19indiaorg.cloudfunctions.net/api";
 	/*
 	    Fullscreen background
 	*/
@@ -23,17 +25,16 @@ jQuery(document).ready(function() {
 
 	// next step
 	$('.msf-form form .btn-next').on('click', function() {
+		var url = prod_url + "/getDoctorDetails";
 		if ($(this).attr("id") == "step_1"){
 			$.ajax({
-				url: "https://econsult-api-lovat.now.sh/doctorsbyId?emailId="+$("#doctor_email").val(),
+				url: url + "?emailid="+$("#doctor_email").val(),
 				type: "GET",
 				success: function(result){
-					if (result[0]){
-						$("#doctor_name").val("Dr. " + result[0].name);
-						$("#doctor_designation").val(result[0].qualifications);
-						$("#medical_reg_no").val(result[0].medicalcouncilregistrationnopleaseinputthefullnowithstatemedicalcouncilprefix);
-						$("#doctor_location").val(result[0].state);
-					}
+					$("#doctor_name").val("Dr. " + result.fields.Name);
+					$("#doctor_designation").val(result.fields.Qualifications);
+					$("#medical_reg_no").val(result.fields.Medical_Council_Registration_Number);
+					$("#doctor_location").val(result.fields.State);
 				},
 				error: function(error){
 				}
@@ -155,8 +156,9 @@ jQuery(document).ready(function() {
 
     	var request = JSON.stringify(request_json);
     	// TODO: Should make the below variable as environment variable
-    	var dev_url = "http://localhost:5001/covid19indiaorg/us-central1/api/generateReport";
-	var prod_url = "https://us-central1-covid19indiaorg.cloudfunctions.net/api/generateReport";
+
+    	// Update this to use dev_url if running locally.
+		var url = prod_url + "/generateReport";
     	var xhr = new XMLHttpRequest();
 		xhr.open('POST', prod_url, true);
 		xhr.responseType = 'arraybuffer';

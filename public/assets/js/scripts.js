@@ -155,10 +155,10 @@ jQuery(document).ready(function() {
 
     	var request = JSON.stringify(request_json);
     	// TODO: Should make the below variable as environment variable
-    	var api_url = "http://localhost:5001/covid19indiaorg/us-central1/api/"
-    	var url = api_url + "generateReport";
+    	var dev_url = "http://localhost:5001/covid19indiaorg/us-central1/api/generateReport";
+	var prod_url = "https://us-central1-covid19indiaorg.cloudfunctions.net/api/generateReport";
     	var xhr = new XMLHttpRequest();
-		xhr.open('POST', url, true);
+		xhr.open('POST', prod_url, true);
 		xhr.responseType = 'arraybuffer';
 		xhr.onload = function () {
 		    if (this.status === 200) {

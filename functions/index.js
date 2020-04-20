@@ -10,13 +10,14 @@ let app = express();
 let ejs = require("ejs");
 let pdf = require("html-pdf");
 let path = require("path");
-
+const cors = require('cors')({ origin: true })
+app.use(cors)
 app.use(express.json());
 
 let footer = "<p style=\"color:#777777; text-align:center; font-size:7pt\">\
 Disclaimer: This prescription is based on the information provided by you in an online consultation and not on any physical verification. \
 Visit a doctor in case of emergency. This prescription is valid in India only. \
-<p>" 
+<p>"
 
 
 app.post("/generateReport", (req, res) => {

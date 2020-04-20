@@ -5,3 +5,19 @@ This module has two directories:
 
 2) functions/
 	This director contains the cloud function code that receives the request from the client and sends a PDF in response.
+	
+## Running Locally
+```shell script
+# Clone the Repo
+git clone https://github.com/covid19india/econsult-prescribe.git
+
+# Install the dependencies
+npm --prefix ./functions install ./functions
+
+# Start the cloud functions api
+npm --prefix ./functions run serve
+
+# Start the Client
+npx http-server ./client
+```
+Navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in the browser

@@ -20,7 +20,7 @@ jQuery(document).ready(function() {
 	    Multi Step Form
 	*/
 	$('.msf-form form fieldset:first-child').fadeIn('slow');
-	
+
 	// next step
 	$('.msf-form form .btn-next').on('click', function() {
 		if ($(this).attr("id") == "step_1"){
@@ -44,7 +44,7 @@ jQuery(document).ready(function() {
 			scroll_to_class('.msf-form');
 	    });
 	});
-	
+
 	// previous step
 	$('.msf-form form .btn-previous').on('click', function() {
 		$(this).parents('fieldset').fadeOut(400, function() {
@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
 			scroll_to_class('.msf-form');
 		});
 	});
-	
+
 	// Add step
 	$('.msf-form form .btn-plus').on('click', function () {
 		medicine_count++;
@@ -111,7 +111,7 @@ jQuery(document).ready(function() {
     	data = $(this).serializeArray();
 
     	var request_json = new Object();
-    	
+
     	// Create doctor JSON object.
     	var doctor_json = new Object();
     	doctor_json.name = data[1].value;
@@ -132,7 +132,7 @@ jQuery(document).ready(function() {
     	prescription_json.issued_on = new Date().toLocaleDateString();
     	// To be fetched from the tawkto ticket ID.
     	prescription_json.id = "12345";
-    	prescription_json.symptoms = data[10].value; 
+    	prescription_json.symptoms = data[10].value;
     	prescription_json.diagnosis = data[11].value;
     	prescription_json.additional_remarks = data[data.length-2].value;
     	prescription_json.follow_up_advice = data[data.length-1].value;
@@ -146,7 +146,7 @@ jQuery(document).ready(function() {
     		medicine_json.usage = data[i+3].value;
     		prescription_json.medicines.push(medicine_json);
     	}
-    	
+
 
     	request_json.doctor = doctor_json;
     	request_json.patient = patient_json;
@@ -154,7 +154,9 @@ jQuery(document).ready(function() {
     	console.log(request_json);
 
     	var request = JSON.stringify(request_json);
-    	var url = window.location.href + "generateReport";
+    	// TODO: Should make the below variable as environment variable
+    	var api_url = "http://localhost:5001/covid19indiaorg/us-central1/api/"
+    	var url = api_url + "generateReport";
     	var xhr = new XMLHttpRequest();
 		xhr.open('POST', url, true);
 		xhr.responseType = 'arraybuffer';
@@ -208,7 +210,7 @@ jQuery(document).ready(function() {
 		};
 		xhr.setRequestHeader('Content-Type', 'application/json');
 		xhr.send(request);
-	});   
+	});
 });
 
 

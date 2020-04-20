@@ -12,6 +12,7 @@
     "node": "8"
   },
   "dependencies": {
+    "airtable": "^0.8.1",
     "cors": "^2.8.5",
     "ejs": "^3.0.2",
     "express": "^4.17.1",

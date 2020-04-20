@@ -14,6 +14,11 @@ const cors = require('cors')({ origin: true })
 app.use(cors)
 app.use(express.json());
 
+
+var Airtable = require('airtable');
+var base = new Airtable({apiKey: ''}).base('appK8jtKwcTOdR3Os');
+
+
 let footer = "<p style=\"color:#777777; text-align:center; font-size:7pt\">\
 Disclaimer: This prescription is based on the information provided by you in an online consultation and not on any physical verification. \
 Visit a doctor in case of emergency. This prescription is valid in India only. \
@@ -24,7 +29,7 @@ app.post("/generateReport", (req, res) => {
     var details = req.body;
     ejs.renderFile(path.join(__dirname, './views/', "prescription-template.ejs"), {details: details}, (err, data) => {
     if (err) {
-      res.send(err);
+      return res.send(err);
     } else {
         var file_name = "prescription-" + details.prescription.id + ".pdf";
         let options = {
@@ -46,10 +51,29 @@ app.post("/generateReport", (req, res) => {
             }
 	    res.setHeader('Content-type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename='+file_name);
-        stream.pipe(res); // your response
+        return stream.pipe(res); // your response
         });
     }
 });
+})
+
+app.get("/getDoctorDetails", (req, res) => {
+    var emailid = req.query.emailid;
+    base('Doctors').select({
+        view: 'Grid',
+        maxRecords: 1,
+        filterByFormula: "AND({Email}='"+emailid+"',TRUE({Verified}))"
+    }).firstPage(function(err, records) {
+        if (err || records.length == 0) {
+            return res.status(400).send({
+                message: 'Could not find a matching record.'
+            });
+        }
+        else{
+            res.setHeader('Content-type', 'application/json');
+            return res.send(records[0]._rawJson);
+        }
+    });
 })
 
 

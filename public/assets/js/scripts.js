@@ -131,7 +131,6 @@ jQuery(document).ready(function() {
 
 	// medications step
 	$('#medications_step').on('click', function() {
-		prescription_json = new Object();
 		var data = $('#medications').serializeArray();
 
 		if (!(verifyAllFilled(data) && data.length  == 4 * $('#medicine_group .medicine').length)){

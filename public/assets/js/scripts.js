@@ -299,8 +299,7 @@ jQuery(document).ready(function() {
 		var request = JSON.stringify(request_json);
 		// TODO: Should make the below variable as environment variable
 
-		console.log(request);
-		// Update this to use dev_url if running l	ocally.
+		// Update this to use dev_url if running locally.
 		var url = prod_url + '/generateReport';
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST', url, true);

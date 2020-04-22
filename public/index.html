@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="assets/css/form-elements.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/media-queries.css">
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 
         <!-- Favicon and touch icons -->
         <link rel="shortcut icon" href="assets/ico/favicon.png">
@@ -34,16 +35,17 @@
 	            </div>
 	            <div class="row">
 	                <div class="col-sm-12 msf-form">
-	                    
+
 	                    <form role="form" class="form-inline">
 	                    	<fieldset id="email">
 	            				<h4><span class="step">(Step 1 / 6)</span></h4>
 	            				<div class="form-group">
-				                    <label for="doctor_email">Enter your registered email ID to fetch your details automatically:</label><br>
-				                    <input type="text" name="doctor_email" placeholder="joe@example.com" class="form-control" id="doctor_email">
+				                    <label for="doctor_email">Sign in with Google and click next</label><br>
+									<div id="firebaseui-auth-container"></div>
+				                    <input type="text" name="doctor_email" class="form-control" id="doctor_email" readonly style="display: none;">
 				                </div>
 	            				<br>
-	            				<button type="button" class="btn btn-next" id="email_step">Next <i class="fa fa-angle-right"></i></button>
+	            				<button type="button" class="btn btn-next" id="email_step" style="display: none;">Next <i class="fa fa-angle-right"></i></button>
 	            			</fieldset>
 
 	                    	<fieldset id="doctor">
@@ -68,7 +70,7 @@
 	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
 	            				<button type="button" class="btn btn-next" id="doctor_step">Next <i class="fa fa-angle-right"></i></button>
 	            			</fieldset>
-	            			
+
 	            			<fieldset id="patient">
 	            				<h4>Patient's Details <span class="step">(Step 3 / 6)</span></h4>
 	            				<div class="form-group">
@@ -102,7 +104,7 @@
 	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
 	            				<button type="button" class="btn btn-next" id="patient_step">Next <i class="fa fa-angle-right"></i></button>
 	            			</fieldset>
-	            			
+
 	            			<fieldset id="diagnosis">
 	            				<h4>Diagnosis <span class="step">(Step 4 / 6)</span></h4>
 	            				<div class="form-group">
@@ -117,7 +119,7 @@
 	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
 	            				<button type="button" class="btn btn-next" id="diagnosis_step">Next <i class="fa fa-angle-right"></i></button>
 	            			</fieldset>
-	                    	
+
 	                    	<fieldset id="medications">
 	            				<h4>Medications <span class="step">(Step 5 / 6)</span></h4>
 	            				<div id="medicine_group">
@@ -126,7 +128,7 @@
 	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
 	            				<button type="button" class="btn btn-next" id="medications_step">Next <i class="fa fa-angle-right"></i></button>
 	            			</fieldset>
-	            			
+
 	            			<fieldset id='remarks'>
 	            				<h4><span class="step">(Step 6 / 6)</span></h4>
 	            				<div class="form-group">
@@ -142,18 +144,20 @@
 	            				<button type="submit" class="btn btn-submit">Submit</button>
 	            			</fieldset>
 	                    </form>
-	                    
+
 	                </div>
 	            </div>
 			</div>
 		</div>
-		
+
         <!-- Javascript -->
         <script src="assets/js/jquery-1.11.1.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/jquery.backstretch.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+		<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
         <script src="assets/js/scripts.js"></script>
-        
     </body>
 
 </html>

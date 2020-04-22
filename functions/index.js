@@ -5,6 +5,8 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
+const { v4: uuidv4 } = require('uuid');
+
 let express = require("express");
 let app = express();
 let ejs = require("ejs");
@@ -24,9 +26,47 @@ Disclaimer: This prescription is based on the information provided by you in an 
 Visit a doctor in case of emergency. This prescription is valid in India only. \
 <p>"
 
+const nodemailer = require("nodemailer");
+
+async function sendEmail({ details, path}) {
+    const senderEmail = "";
+    const senderPassword = "";
+    const SMTP_HOST = ""; // smtp.zoho.com
+    const transporter = nodemailer.createTransport({
+    	host: SMTP_HOST,
+    	port: 465,
+    	secure: true,
+    	auth: {
+    		user: senderEmail,
+    		pass: senderPassword,
+    	},
+    })
+
+    const html = `This is the prescription advised by <b>${details.doctor.name}</b> for the patient named <b>${details.patient.name}</b>`;
+    const text = `This is the prescription advised by ${details.doctor.name} for the patient named ${details.patient.name}`;
+    const db_email = 'indiaeconsult.db@gmail.com';
+    let toEmails = `${details.doctor.emailid}, ${db_email}`;
+
+    await transporter.sendMail({
+        from: senderEmail,
+        to: toEmails,
+        subject: `Prescription - ${details.patient.name} - ${new Date().toLocaleDateString('en-IN')}`,
+        text: text,
+        html: html,
+        attachments: [
+            {
+                filename: `${details.prescription.id}.pdf`,
+                path: path
+            }
+        ]
+    })
+
+}
+
 
 app.post("/generateReport", (req, res) => {
     var details = req.body;
+    details.prescription.id = uuidv4();
     ejs.renderFile(path.join(__dirname, './views/', "prescription-template.ejs"), {details: details}, (err, data) => {
     if (err) {
       return res.send(err);
@@ -43,7 +83,7 @@ app.post("/generateReport", (req, res) => {
                 "contents": footer
             },
         };
-        pdf.create(data, options).toStream(function(err, stream) {
+        pdf.create(data, options).toStream(async function(err, stream) {
             if (err) {
               res.json({
                 message: 'Sorry, we were unable to generate pdf',
@@ -51,6 +91,7 @@ app.post("/generateReport", (req, res) => {
             }
 	    res.setHeader('Content-type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename='+file_name);
+        await sendEmail({ path: stream.path, details })
         return stream.pipe(res); // your response
         });
     }

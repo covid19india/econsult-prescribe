@@ -60,20 +60,17 @@ app.post("/generateReport", (req, res) => {
 app.get("/getDoctorDetails", (req, res) => {
     var emailid = req.query.emailid;
     base('Doctors').select({
-        view: 'Grid',
+        view: 'Verified_Doctors',
         maxRecords: 1,
-        filterByFormula: "AND({Email}='"+emailid+"',TRUE({Verified}))"
-    }).firstPage(function(err, records) {
-        if (err || records.length == 0) {
-            return res.status(400).send({
-                message: 'Could not find a matching record.'
-            });
-        }
-        else{
-            res.setHeader('Content-type', 'application/json');
-            return res.send(records[0]._rawJson);
-        }
-    });
+        filterByFormula: "{Email}='"+emailid+"'"}).firstPage(function(err, records) {
+        	if (err || records.length == 0) {
+            		return res.status(400).send({message: 'Could not find a matching record.'});
+        	}
+        	else{
+            		res.setHeader('Content-type', 'application/json');
+            		return res.send(records[0]._rawJson);
+        	}
+    	});
 })
 
 

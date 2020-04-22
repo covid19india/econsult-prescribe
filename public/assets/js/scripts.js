@@ -15,36 +15,145 @@ jQuery(document).ready(function() {
 	/*
 	    Fullscreen background
 	*/
+	var request_json;
+	var doctor_json;
+	var patient_json;
+	var prescription_json;
+
 	var medicine_count = 0;
 	$.backstretch("assets/img/backgrounds/1.jpg");
+
+	function verifyAllFilled(data){
+		var allAreFilled = true;
+
+		data.forEach(function(e){
+			if (e.value == '') {
+				allAreFilled = false;
+			}
+		})
+
+		return allAreFilled;
+	}
+
+	function loadNextStep(id){
+		$(id).fadeOut(400, function() {
+	    	$(this).next().fadeIn();
+			scroll_to_class('.msf-form');
+	    });
+	}
 
 	/*
 	    Multi Step Form
 	*/
 	$('.msf-form form fieldset:first-child').fadeIn('slow');
 
-	// next step
-	$('.msf-form form .btn-next').on('click', function() {
-		var url = prod_url + "/getDoctorDetails";
-		if ($(this).attr("id") == "step_1"){
-			$.ajax({
-				url: url + "?emailid="+$("#doctor_email").val(),
-				type: "GET",
-				success: function(result){
-					$("#doctor_name").val("Dr. " + result.fields.Name);
-					$("#doctor_designation").val(result.fields.Qualifications);
-					$("#medical_reg_no").val(result.fields.Medical_Council_Registration_Number);
-					$("#doctor_location").val(result.fields.State);
-				},
-				error: function(error){
-				}
-			});
-		}
-		$(this).parents('fieldset').fadeOut(400, function() {
-	    	$(this).next().fadeIn();
-			scroll_to_class('.msf-form');
-	    });
+	// email step
+	$('#email_step').on('click', function() {
+		var url = prod_url + "/getDoctorDetails";	
+		
+		$.ajax({
+			url: url + "?emailid="+$("#doctor_email").val(),
+			type: "GET",
+			success: function(result){
+				doctor_json = new Object();
+				doctor_json.emailid = $('#doctor_email').val();
+				$("#doctor_name").val("Dr. " + result.fields.Name);
+				$("#doctor_designation").val(result.fields.Qualifications);
+				$("#medical_reg_no").val(result.fields.Medical_Council_Registration_Number);
+				$("#doctor_location").val(result.fields.State);
+
+				loadNextStep('#email');
+			},
+			error: function(error){
+				alert("Please enter your registered email ID.");
+				$('#doctor_email').val('');
+			}
+		});
 	});
+
+	// doctor step
+	$('#doctor_step').on('click', function() {
+		var data = $('#doctor').serializeArray();
+		
+		if (!verifyAllFilled(data)){
+			alert('Please fill out all the fields correctly before proceeding.');
+		}
+
+		else{
+			doctor_json.name = data[0].value;
+	    	doctor_json.designation = data[1].value;
+	    	doctor_json.registration_number = data[2].value;
+	    	doctor_json.location = data[3].value;
+
+	    	loadNextStep('#doctor');
+	    }
+	});
+
+
+	// patient step
+	$('#patient_step').on('click', function() {
+		patient_json = new Object();
+		var data = $('#patient').serializeArray();
+		
+		if (!verifyAllFilled(data)){
+			alert('Please fill out all the fields correctly before proceeding.');
+		}
+
+		else{
+			patient_json.name = data[0].value;
+	    	patient_json.age = data[1].value;
+	    	patient_json.gender = data[2].value;
+	    	patient_json.location = data[3].value;
+	    	patient_json.blood_group = data[4].value;
+
+	    	loadNextStep('#patient');
+	    }
+	});
+
+	// diagnosis step
+	$('#diagnosis_step').on('click', function() {
+		prescription_json = new Object();
+		var data = $('#diagnosis').serializeArray();
+
+		if (!verifyAllFilled(data)){
+			alert('Please fill out all the fields correctly before proceeding.');
+		}
+
+		else{
+			prescription_json.issued_on = new Date().toLocaleDateString();
+			prescription_json.id = "12345";
+    		prescription_json.symptoms = data[0].value;
+    		prescription_json.diagnosis = data[1].value;
+
+	    	loadNextStep('#diagnosis');
+	    }
+	});
+
+	// medications step
+	$('#medications_step').on('click', function() {
+		prescription_json = new Object();
+		var data = $('#medications').serializeArray();
+
+		if (!(verifyAllFilled(data) && data.length  == 4 * $('#medicine_group .medicine').length)){
+			alert('Please fill out all the fields correctly before proceeding.');
+		}
+
+		else{
+			prescription_json.medicines = [];
+
+	    	for (i = 0; i < data.length; i = i + 4){
+	    		var medicine_json = new Object();
+	    		medicine_json.name = data[i].value;
+	    		medicine_json.duration = data[i+1].value;
+	    		medicine_json.frequency = data[i+2].value;
+	    		medicine_json.usage = data[i+3].value;
+	    		prescription_json.medicines.push(medicine_json);
+	    	}
+
+	    	loadNextStep('#medications');
+	    }
+	});
+
 
 	// previous step
 	$('.msf-form form .btn-previous').on('click', function() {
@@ -109,56 +218,22 @@ jQuery(document).ready(function() {
     // Submit Step
     $('form').submit(function(e) {
     	e.preventDefault();
-    	data = $(this).serializeArray();
 
     	var request_json = new Object();
 
-    	// Create doctor JSON object.
-    	var doctor_json = new Object();
-    	doctor_json.name = data[1].value;
-    	doctor_json.designation = data[2].value;
-    	doctor_json.registration_number = data[3].value;
-    	doctor_json.location = data[4].value;
-
-		// Create patient JSON object.
-    	var patient_json = new Object();
-    	patient_json.name = data[5].value;
-    	patient_json.age = data[6].value;
-    	patient_json.gender = data[7].value;
-    	patient_json.location = data[8].value;
-    	patient_json.blood_group = data[9].value;
-
-    	// Create prescription JSON object.
-    	var prescription_json = new Object();
-    	prescription_json.issued_on = new Date().toLocaleDateString();
-    	// To be fetched from the tawkto ticket ID.
-    	prescription_json.id = "12345";
-    	prescription_json.symptoms = data[10].value;
-    	prescription_json.diagnosis = data[11].value;
-    	prescription_json.additional_remarks = data[data.length-2].value;
-    	prescription_json.follow_up_advice = data[data.length-1].value;
-    	prescription_json.medicines = [];
-
-    	for (i = 12; i < data.length - 2; i = i + 4){
-    		var medicine_json = new Object();
-    		medicine_json.name = data[i].value;
-    		medicine_json.duration = data[i+1].value;
-    		medicine_json.frequency = data[i+2].value;
-    		medicine_json.usage = data[i+3].value;
-    		prescription_json.medicines.push(medicine_json);
-    	}
+    	prescription_json.additional_remarks = $('#additional_remarks').val();
+    	prescription_json.follow_up_advice = $('#follow_up_advice').val();
 
 
     	request_json.doctor = doctor_json;
     	request_json.patient = patient_json;
     	request_json.prescription = prescription_json;
-    	console.log(request_json);
 
     	var request = JSON.stringify(request_json);
     	// TODO: Should make the below variable as environment variable
 
     	// Update this to use dev_url if running locally.
-		var url = prod_url + "/generateReport";
+		var url = dev_url + "/generateReport";
     	var xhr = new XMLHttpRequest();
 		xhr.open('POST', url, true);
 		xhr.responseType = 'arraybuffer';

@@ -233,7 +233,7 @@ jQuery(document).ready(function() {
     	// TODO: Should make the below variable as environment variable
 
     	// Update this to use dev_url if running locally.
-		var url = dev_url + "/generateReport";
+		var url = prod_url + "/generateReport";
     	var xhr = new XMLHttpRequest();
 		xhr.open('POST', url, true);
 		xhr.responseType = 'arraybuffer';

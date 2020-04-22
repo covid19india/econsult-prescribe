@@ -93,7 +93,6 @@ jQuery(document).ready(function() {
 			},
 			error: function(error){
 				alert('You have not yet been verified by us. Please contact our moderation team.')
-				$('#doctor_email').val('');
 				location.reload();
 			}
 		});

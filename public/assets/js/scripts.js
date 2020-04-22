@@ -10,6 +10,33 @@ function scroll_to_class(chosen_class) {
 
 
 jQuery(document).ready(function() {
+	var firebaseConfig = {
+		apiKey: "",
+		authDomain: "covid19indiaorg.firebaseapp.com",
+	};
+	firebase.initializeApp(firebaseConfig);
+	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	var uiConfig = {
+		callbacks: {
+			signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+				var email = authResult.user.email
+				$("#doctor_email").show()
+				$("#doctor_email").val(email)
+				return false;
+			},
+			uiShown: function() {
+				// document.getElementById('loader').style.display = 'none';
+			}
+		},
+		signInFlow: 'popup',
+		signInSuccessUrl: '<url-to-redirect-to-on-success>',
+		signInOptions: [
+			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+		],
+		tosUrl: '<your-tos-url>',
+		privacyPolicyUrl: '<your-privacy-policy-url>'
+	};
+	ui.start('#firebaseui-auth-container', uiConfig)
 	var dev_url = "http://localhost:5001/covid19indiaorg/us-central1/api";
 	var prod_url = "https://us-central1-covid19indiaorg.cloudfunctions.net/api";
 	/*
@@ -49,8 +76,8 @@ jQuery(document).ready(function() {
 
 	// email step
 	$('#email_step').on('click', function() {
-		var url = prod_url + "/getDoctorDetails";	
-		
+		var url = prod_url + "/getDoctorDetails";
+
 		$.ajax({
 			url: url + "?emailid="+$("#doctor_email").val(),
 			type: "GET",
@@ -65,8 +92,9 @@ jQuery(document).ready(function() {
 				loadNextStep('#email');
 			},
 			error: function(error){
-				alert("Please enter your registered email ID.");
+				alert('You have not yet been verified by us. Please contact our moderation team.')
 				$('#doctor_email').val('');
+				location.reload();
 			}
 		});
 	});
@@ -74,7 +102,7 @@ jQuery(document).ready(function() {
 	// doctor step
 	$('#doctor_step').on('click', function() {
 		var data = $('#doctor').serializeArray();
-		
+
 		if (!verifyAllFilled(data)){
 			alert('Please fill out all the fields correctly before proceeding.');
 		}
@@ -94,7 +122,7 @@ jQuery(document).ready(function() {
 	$('#patient_step').on('click', function() {
 		patient_json = new Object();
 		var data = $('#patient').serializeArray();
-		
+
 		if (!verifyAllFilled(data)){
 			alert('Please fill out all the fields correctly before proceeding.');
 		}

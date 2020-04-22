@@ -1,6 +1,6 @@
 Prescription pdf template generator module.
 This module has two directories:
-1) client/ 
+1) public/ 
 	This directory contains the client side form that takes input from user and makes an HTTP call to the cloud function that generates the PDF prescription.
 
 2) functions/
@@ -22,4 +22,4 @@ npx http-server ./public
 
 Note: You'll have to update the XHR request in /public/assets/js/scripts.js to use dev_url instead of prod_url. 
 ```
-Navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in the browser
+Navigate to [http://localhost:8080/](http://localhost:8080/) in the browser

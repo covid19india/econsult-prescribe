@@ -42,8 +42,8 @@ async function sendEmail({ details, path}) {
     	},
     })
 
-    const html = `This is the prescription prescribed by <b>${details.doctor.name}</b> for the patient named <b>${details.patient.name}</b>`;
-    const text = `This is the prescription prescribed by ${details.doctor.name} for the patient named ${details.patient.name}`;
+    const html = `This is the prescription advised by <b>${details.doctor.name}</b> for the patient named <b>${details.patient.name}</b>`;
+    const text = `This is the prescription advised by ${details.doctor.name} for the patient named ${details.patient.name}`;
     const db_email = 'indiaeconsult.db@gmail.com';
     let toEmails = `${details.doctor.emailid}, ${db_email}`;
 

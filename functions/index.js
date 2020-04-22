@@ -50,7 +50,7 @@ async function sendEmail({ details, path}) {
     await transporter.sendMail({
         from: senderEmail,
         to: toEmails,
-        subject: `Prescription - ${details.patient.name} - ${new Date().toLocaleDateString()}`,
+        subject: `Prescription - ${details.patient.name} - ${new Date().toLocaleDateString('en-IN')}`,
         text: text,
         html: html,
         attachments: [

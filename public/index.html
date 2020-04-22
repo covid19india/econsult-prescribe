@@ -40,7 +40,7 @@
 	            				<h4><span class="step">(Step 1 / 6)</span></h4>
 	            				<div class="form-group">
 				                    <label for="doctor_email">Enter your registered email ID to fetch your details automatically:</label><br>
-				                    <input type="text" name="doctor_email" class="form-control" id="doctor_email">
+				                    <input type="text" name="doctor_email" placeholder="joe@example.com" class="form-control" id="doctor_email">
 				                </div>
 	            				<br>
 	            				<button type="button" class="btn btn-next" id="email_step">Next <i class="fa fa-angle-right"></i></button>
@@ -50,19 +50,19 @@
 	            				<h4>Doctor's Details <span class="step">(Step 2 / 6)</span></h4>
 	            				<div class="form-group">
 				                    <label>Doctor's Full Name:</label><br>
-				                    <input type="text" name="doctor_name" class="form-control" id="doctor_name" required>
+				                    <input type="text" name="doctor_name" placeholder="Full Name" class="form-control" id="doctor_name" required>
 				                </div>
 				                <div class="form-group">
 				                    <label>Designation:</label><br>
-				                    <input type="text" name="doctor_designation" class="form-control" id="doctor_designation" required>
+				                    <input type="text" name="doctor_designation" placeholder="Dr, MD?" class="form-control" id="doctor_designation" required>
 				                </div>
 				                <div class="form-group">
 				                    <label>Medical Registration Number:</label><br>
-				                    <input type="text" name="medical_reg_no" class="form-control" id="medical_reg_no" required>
+				                    <input type="text" name="medical_reg_no" placeholder="xxxxx" class="form-control" id="medical_reg_no" required>
 				                </div>
 				                <div class="form-group">
 				                    <label>Location:</label><br>
-				                    <input type="text" name="doctor_location" class="form-control" id="doctor_location" required>
+				                    <input type="text" name="doctor_location" placeholder="Mumbai, Kolkata" class="form-control" id="doctor_location" required>
 				                </div>
 	            				<br>
 	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
@@ -73,38 +73,31 @@
 	            				<h4>Patient's Details <span class="step">(Step 3 / 6)</span></h4>
 	            				<div class="form-group">
 				                    <label>Patient's Full Name:</label><br>
-				                    <input type="text" name="patient_name" class="form-control" id="patient_name" required>
-				                </div>
-	            				<div class="form-group">
-				                    <label>Age:</label><br>
-				                    <input type="number" name="patient_age" class="form-control" id="patient_age" required>
-				                </div>
-				                <div class="form-group">
-									<label>Gender:</label><br>
-					                <select class="form-control" id="patient_gender" name="patient_gender" required>
-					                	<option value="Male">Male</option>
-					                	<option value="Female">Female</option>
-					                	<option value="Other">Other</option>
-					                </select>
+				                    <input type="text" name="patient_name" placeholder="Full Name" class="form-control" id="patient_name" required>
 								</div>
-				                <div class="form-group">
-				                    <label>Location:</label><br>
-				                    <input type="text" name="patient_location" class="form-control" id="patient_location" required>
-				                </div>
-				                <div class="form-group">
-									<label>Blood Group:</label><br>
-					                <select class="form-control short" id="patient_blood_group" name="patient_blood_group" required>
-					                	<option value="AB+">AB+</option>
-										<option value="AB-">AB-</option>
-					                	<option value="A+">A+</option>
-					                	<option value="A-">A-</option>
-					                	<option value="B+">B+</option>
-					                	<option value="B-">B-</option>
-										<option value="O+">O+</option>
-					                	<option value="O-">O-</option>
-
-					                </select>
+								<div class="form-group">
+									<label>Patient Email Id:</label><br>
+					                <input type="text" name="doctor_email" placeholder="joe@example.com" class="form-control" id="doctor_email">
 								</div>
+								<div class="form-row">
+									<div class="form-group">
+										<label>Gender:</label><br>
+										<select class="form-control" id="patient_gender" name="patient_gender" required>
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Location:</label><br>
+										<input type="text" name="patient_location" placeholder="Mumbai, Kolkata" class="form-control" id="patient_location" required>
+									</div>
+									<div class="form-group">
+										<label>Age:</label><br>
+										<input type="number" name="patient_age" placeholder="Your Age" class="form-control" id="patient_age" required>
+									</div>
+								</div>
+				                
 	            				<br>
 	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>
 	            				<button type="button" class="btn btn-next" id="patient_step">Next <i class="fa fa-angle-right"></i></button>
@@ -114,11 +107,11 @@
 	            				<h4>Diagnosis <span class="step">(Step 4 / 6)</span></h4>
 	            				<div class="form-group">
 				                    <label>Symptoms:</label><br>
-				                    <input type="text" name="symptoms" class="address form-control" id="symptoms" required>
+				                    <input type="text" name="symptoms" placeholder="Specify Symptoms" class="address form-control" id="symptoms" required>
 				                </div>
 				                <div class="form-group">
 				                    <label>Diagnosis:</label><br>
-				                    <input type="text" name="diagnosis" class="address-city form-control" id="diagnosis" required>
+				                    <input type="text" name="diagnosis" placeholder="What is causing symptoms" class="address-city form-control" id="diagnosis" required>
 				                </div>
 	            				<br>
 	            				<button type="button" class="btn btn-previous"><i class="fa fa-angle-left"></i> Previous</button>

@@ -21,6 +21,7 @@ jQuery(document).ready(function() {
 			signInSuccessWithAuthResult: function(authResult, redirectUrl) {
 				var email = authResult.user.email
 				$("#doctor_email").show()
+				$("#email_step").show()
 				$("#doctor_email").val(email)
 				return false;
 			},
@@ -29,12 +30,12 @@ jQuery(document).ready(function() {
 			}
 		},
 		signInFlow: 'popup',
-		signInSuccessUrl: '<url-to-redirect-to-on-success>',
+		// signInSuccessUrl: '<url-to-redirect-to-on-success>',
 		signInOptions: [
 			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 		],
-		tosUrl: '<your-tos-url>',
-		privacyPolicyUrl: '<your-privacy-policy-url>'
+		// tosUrl: '<your-tos-url>',
+		// privacyPolicyUrl: '<your-privacy-policy-url>'
 	};
 	ui.start('#firebaseui-auth-container', uiConfig)
 	var dev_url = "http://localhost:5001/covid19indiaorg/us-central1/api";

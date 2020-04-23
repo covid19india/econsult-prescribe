@@ -104,9 +104,9 @@ jQuery(document).ready(function() {
 				doctor_json = new Object();
 				doctor_json.emailid = $('#doctor_email').val();
 				$('#doctor_name').val('Dr. ' + result.fields.Name);
-				$('#doctor_email').val(result.fields.email);
+				$('#doctor_email').val(result.fields.Email);
 				$('#doctor_designation').val(result.fields.Qualifications);
-				$('#doctor_specialization').val(result.fields.specialization);
+				$('#doctor_specialization').val(result.fields.Specialization);
 				$('#medical_reg_no').val(
 					result.fields.Medical_Council_Registration_Number
 				);

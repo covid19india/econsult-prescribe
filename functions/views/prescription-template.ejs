@@ -59,14 +59,16 @@
                 <% if (details) { %>
                     <div class="info"> 
 			         <p><span><%= details.doctor.name %></span></p>
-			         <p><%= details.doctor.designation %></p>
+                     <p><%= details.doctor.designation %></p> 
+                     <p><%= details.doctor.email %></p>
 			         <p>Medical Registration Number: <%= details.doctor.registration_number %></p>
-			         <p><%= details.doctor.location %></p>
+                     <p><%= details.doctor.location %></p>
                     </div>
                     <hr>
                     
                     <div class="info patient">
                         <p><span><%= details.patient.name %></span></p>
+                        <p><%= details.patient.email %></p>
                         <p><%= details.patient.age %>, <%= details.patient.gender %>, located in <%= details.patient.location %>.</p>
                     </div>
 

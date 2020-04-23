@@ -102,9 +102,8 @@ jQuery(document).ready(function() {
 			type: 'GET',
 			success: function (result) {
 				doctor_json = new Object();
-				doctor_json.emailid = $('#doctor_email').val();
+				doctor_json.email = $('#doctor_email').val();
 				$('#doctor_name').val('Dr. ' + result.fields.Name);
-				$('#doctor_email').val(result.fields.Email);
 				$('#doctor_designation').val(result.fields.Qualifications);
 				$('#doctor_specialization').val(result.fields.Specialization);
 				$('#medical_reg_no').val(
@@ -125,19 +124,14 @@ jQuery(document).ready(function() {
 	$('#doctor_step').on('click', function () {
 		var data = $('#doctor').serializeArray();
 
-		if (!verifyAllFilled(data)){
-			alert('Please fill out all the fields correctly before proceeding.');
-		}
-
 		if (!verifyAllFilled(data)) {
 			alert('Please fill out all the fields correctly before proceeding.');
 		} else {
 			doctor_json.name = data[0].value;
-			doctor_json.email = data[1].value;
-			doctor_json.designation = data[2].value;
-			doctor_json.specialization = data[3].value;
-			doctor_json.registration_number = data[4].value;
-			doctor_json.location = data[5].value;
+			doctor_json.designation = data[1].value;
+			doctor_json.specialization = data[2].value;
+			doctor_json.registration_number = data[3].value;
+			doctor_json.location = data[4].value;
 
 			loadNextStep('#doctor');
 		}
@@ -146,10 +140,6 @@ jQuery(document).ready(function() {
 	// patient step
 	$('#patient_step').on('click', function () {
 		var data = $('#patient').serializeArray();
-
-		if (!verifyAllFilled(data)){
-			alert('Please fill out all the fields correctly before proceeding.');
-		}
 
 		if (!verifyAllFilled(data)) {
 			alert('Please fill out all the fields correctly before proceeding.');

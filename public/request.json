@@ -1,16 +1,19 @@
 {
     "doctor": {
-        "name": "Dr. Vidhan C Doshi",
-        "designation": "MBBS, MS - Opthalmology",
-        "registration_number": "2011/02/0192",
-        "location": "Mumbai"
+        "name": "Dr. Foo Bar",
+        "designation": "MBBS",
+        "specialization": "Opthalmology",
+        "registration_number": "xxxx/xx/xxxx",
+        "location": "Mumbai",
+        "email": "foo@bar.com"
     },
 
     "patient": {
-        "name": "Vibhor Kanojia",
-        "age": "26",
+        "name": "John Doe",
+        "age": "41",
         "gender": "Male",
-        "location": "Pune"
+        "location": "Pune",
+        "email": "johndoe@website.com"
     },
 
     "prescription": {

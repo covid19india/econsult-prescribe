@@ -9,34 +9,34 @@ function scroll_to_class(chosen_class) {
 
 
 jQuery(document).ready(function() {
-	// var firebaseConfig = {
-	// 	apiKey: "",
-	// 	authDomain: "covid19indiaorg.firebaseapp.com",
-	// };
-	// firebase.initializeApp(firebaseConfig);
-	// var ui = new firebaseui.auth.AuthUI(firebase.auth());
-	// var uiConfig = {
-	// 	callbacks: {
-	// 		signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-	// 			var email = authResult.user.email
-	// 			$("#doctor_email").show()
-	// 			$("#email_step").show()
-	// 			$("#doctor_email").val(email)
-	// 			return false;
-	// 		},
-	// 		uiShown: function() {
-	// 			// document.getElementById('loader').style.display = 'none';
-	// 		}
-	// 	},
-	// 	signInFlow: 'popup',
-	// 	// signInSuccessUrl: '<url-to-redirect-to-on-success>',
-	// 	signInOptions: [
-	// 		firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-	// 	],
-	// 	// tosUrl: '<your-tos-url>',
-	// 	// privacyPolicyUrl: '<your-privacy-policy-url>'
-	// };
-	// ui.start('#firebaseui-auth-container', uiConfig)
+	var firebaseConfig = {
+		apiKey: "",
+		authDomain: "covid19indiaorg.firebaseapp.com",
+	};
+	firebase.initializeApp(firebaseConfig);
+	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	var uiConfig = {
+		callbacks: {
+			signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+				var email = authResult.user.email
+				$("#doctor_email").show()
+				$("#email_step").show()
+				$("#doctor_email").val(email)
+				return false;
+			},
+			uiShown: function() {
+				// document.getElementById('loader').style.display = 'none';
+			}
+		},
+		signInFlow: 'popup',
+		// signInSuccessUrl: '<url-to-redirect-to-on-success>',
+		signInOptions: [
+			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+		],
+		// tosUrl: '<your-tos-url>',
+		// privacyPolicyUrl: '<your-privacy-policy-url>'
+	};
+	ui.start('#firebaseui-auth-container', uiConfig)
 	var dev_url = "http://localhost:5001/covid19indiaorg/us-central1/api";
 	var prod_url = "https://us-central1-covid19indiaorg.cloudfunctions.net/api";
 	/*

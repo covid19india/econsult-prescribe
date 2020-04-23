@@ -11,6 +11,9 @@
 	.msf-form form input[type="number"] { width: 300px; }
 	.msf-form form input[type="number"].short { width: 150px; }
 
+	.msf-form form input[type="email"] { width: 300px; }
+	.msf-form form input[type="email"].short { width: 150px; }
+
 }
 
 @media (max-width: 767px) {
@@ -24,6 +27,8 @@
 	.msf-form form .form-control { display: inline-block; }
 	.msf-form form input[type="text"] { width: 200px; }
 	.msf-form form input[type="text"].short { width: 100px; }
+	.msf-form form input[type="email"] { width: 200px; }
+	.msf-form form input[type="email"].short { width: 100px; }
 	.msf-form form input[type="number"] { width: 200px; }
 	.msf-form form input[type="number"].short { width: 100px; }
 	.msf-form form textarea.form-control,

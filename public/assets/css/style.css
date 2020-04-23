@@ -49,6 +49,9 @@ img { max-width: 100%; }
 .msf-form form input[type="text"] { width: 400px; margin-left: 5px; margin-right: 5px; }
 .msf-form form input[type="text"].short { width: 200px; margin-left: 5px; margin-right: 5px; }
 
+.msf-form form input[type="email"] { width: 400px; margin-left: 5px; margin-right: 5px; }
+.msf-form form input[type="email"].short { width: 200px; margin-left: 5px; margin-right: 5px; }
+
 .msf-form form input[type="number"] { width: 400px; margin-left: 5px; margin-right: 5px; }
 .msf-form form input[type="number"].short { width: 200px; margin-left: 5px; margin-right: 5px; }
 

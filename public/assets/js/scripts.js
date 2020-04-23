@@ -227,7 +227,7 @@ jQuery(document).ready(function() {
 			'<div class="medicine"> \
 					<div class="form-group"> \
 			            <label>Medicine Name:</label><br> \
-			            <input type="text" placeholder="ex-Paracetamol" name="medicine_name_ ' +
+			            <input type="text" placeholder="Syp Ambrodil (2 tsp)" name="medicine_name_ ' +
 			medicine_count +
 			'" class="form-control" required> \
 			        </div> \

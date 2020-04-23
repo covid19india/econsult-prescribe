@@ -9,34 +9,34 @@ function scroll_to_class(chosen_class) {
 
 
 jQuery(document).ready(function() {
-	var firebaseConfig = {
-		apiKey: "",
-		authDomain: "covid19indiaorg.firebaseapp.com",
-	};
-	firebase.initializeApp(firebaseConfig);
-	var ui = new firebaseui.auth.AuthUI(firebase.auth());
-	var uiConfig = {
-		callbacks: {
-			signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-				var email = authResult.user.email
-				$("#doctor_email").show()
-				$("#email_step").show()
-				$("#doctor_email").val(email)
-				return false;
-			},
-			uiShown: function() {
-				// document.getElementById('loader').style.display = 'none';
-			}
-		},
-		signInFlow: 'popup',
-		// signInSuccessUrl: '<url-to-redirect-to-on-success>',
-		signInOptions: [
-			firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-		],
-		// tosUrl: '<your-tos-url>',
-		// privacyPolicyUrl: '<your-privacy-policy-url>'
-	};
-	ui.start('#firebaseui-auth-container', uiConfig)
+	// var firebaseConfig = {
+	// 	apiKey: "",
+	// 	authDomain: "covid19indiaorg.firebaseapp.com",
+	// };
+	// firebase.initializeApp(firebaseConfig);
+	// var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	// var uiConfig = {
+	// 	callbacks: {
+	// 		signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+	// 			var email = authResult.user.email
+	// 			$("#doctor_email").show()
+	// 			$("#email_step").show()
+	// 			$("#doctor_email").val(email)
+	// 			return false;
+	// 		},
+	// 		uiShown: function() {
+	// 			// document.getElementById('loader').style.display = 'none';
+	// 		}
+	// 	},
+	// 	signInFlow: 'popup',
+	// 	// signInSuccessUrl: '<url-to-redirect-to-on-success>',
+	// 	signInOptions: [
+	// 		firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+	// 	],
+	// 	// tosUrl: '<your-tos-url>',
+	// 	// privacyPolicyUrl: '<your-privacy-policy-url>'
+	// };
+	// ui.start('#firebaseui-auth-container', uiConfig)
 	var dev_url = "http://localhost:5001/covid19indiaorg/us-central1/api";
 	var prod_url = "https://us-central1-covid19indiaorg.cloudfunctions.net/api";
 	/*
@@ -45,7 +45,9 @@ jQuery(document).ready(function() {
 	let request_json = {};
 	let doctor_json = {
 		name: '',
+		email: '',
 		designation: '',
+		specialization:'',
 		registration_number: '',
 		location: '',
 	};
@@ -102,7 +104,9 @@ jQuery(document).ready(function() {
 				doctor_json = new Object();
 				doctor_json.emailid = $('#doctor_email').val();
 				$('#doctor_name').val('Dr. ' + result.fields.Name);
+				$('#doctor_email').val(result.fields.email);
 				$('#doctor_designation').val(result.fields.Qualifications);
+				$('#doctor_specialization').val(result.fields.specialization);
 				$('#medical_reg_no').val(
 					result.fields.Medical_Council_Registration_Number
 				);
@@ -129,9 +133,11 @@ jQuery(document).ready(function() {
 			alert('Please fill out all the fields correctly before proceeding.');
 		} else {
 			doctor_json.name = data[0].value;
-			doctor_json.designation = data[1].value;
-			doctor_json.registration_number = data[2].value;
-			doctor_json.location = data[3].value;
+			doctor_json.email = data[1].value;
+			doctor_json.designation = data[2].value;
+			doctor_json.specialization = data[3].value;
+			doctor_json.registration_number = data[4].value;
+			doctor_json.location = data[5].value;
 
 			loadNextStep('#doctor');
 		}
@@ -139,7 +145,6 @@ jQuery(document).ready(function() {
 
 	// patient step
 	$('#patient_step').on('click', function () {
-		patient_json = new Object();
 		var data = $('#patient').serializeArray();
 
 		if (!verifyAllFilled(data)){

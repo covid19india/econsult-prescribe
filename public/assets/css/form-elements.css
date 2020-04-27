@@ -8,7 +8,7 @@ textarea.form-control {
 	padding: 0 12px;
 	vertical-align: middle;
 	background: #fff;
-	background: rgba(255, 255, 255, 0.6);
+	background: rgba(255, 255, 255, 1.0);
 	border: 0;
 	font-family: 'Raleway', sans-serif;
 	font-size: 14px;
@@ -40,8 +40,9 @@ input[type='email'],
 input[type='number']:focus,
 textarea:focus,
 textarea.form-control:focus {
-	outline: 0;
-	background: #fff;
+    outline: solid;
+    outline-color: blueviolet;
+    outline-width: thin
 	border: 0;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
@@ -49,7 +50,7 @@ textarea.form-control:focus {
 }
 
 ::placeholder {
-    color: #2f2f2f;
+    color: #d5d5d5;
     opacity: 1;
 }
 
@@ -92,6 +93,7 @@ label.radio-inline {
 .radio-inline input[type='radio'] {
 	position: static;
 }
+
 
 button.btn {
 	height: 50px;
@@ -136,7 +138,7 @@ select.form-control {
 	padding: 0 12px;
 	vertical-align: middle;
 	background: #fff;
-	background: rgba(255, 255, 255, 0.6);
+	background: rgba(255, 255, 255, 1.0);
 	border: 0;
 	font-family: 'Raleway', sans-serif;
 	font-size: 14px;
@@ -163,4 +165,8 @@ select.form-control:focus {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+}
+input[readonly]
+{
+    background: rgba(255, 255, 255, 0.6);
 }
